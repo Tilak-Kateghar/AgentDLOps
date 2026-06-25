@@ -1,5 +1,8 @@
 import torch
 
+from app.services.training_state import (
+    TrainingState
+)
 
 class TrainingExecutor:
 
@@ -74,14 +77,21 @@ class TrainingExecutor:
         train_loader,
         optimizer,
         criterion,
-        epochs
+        epochs,
+        model_name="UnknownModel"
     ):
 
         history = []
 
+        training_tracker = (
+            TrainingState()
+        )
+
         for epoch in range(epochs):
 
-            print(f"Starting Epoch {epoch + 1}")
+            print(
+                f"Starting Epoch {epoch + 1}"
+            )
 
             result = self.train_one_epoch(
                 model,
@@ -90,22 +100,59 @@ class TrainingExecutor:
                 criterion
             )
 
+            loss = (
+                result[
+                    "average_loss"
+                ]
+            )
+
             history.append({
 
                 "epoch":
                     epoch + 1,
 
                 "loss":
-                    result[
-                        "average_loss"
-                    ]
+                    loss
             })
+
+            training_tracker.update(
+
+                model=model_name,
+
+                epoch=epoch + 1,
+
+                loss=loss,
+
+                accuracy=0,
+
+                status="Training"
+            )
+
+            print(
+                "TRAINING STATUS UPDATED:",
+                model_name,
+                epoch + 1,
+                loss
+            )
 
             print(
                 f"Epoch {epoch+1}/{epochs} "
                 f"- Loss: "
-                f"{result['average_loss']:.4f}"
+                f"{loss:.4f}"
             )
+
+        training_tracker.update(
+
+            model=model_name,
+
+            epoch=epochs,
+
+            loss=loss,
+
+            accuracy=0,
+
+            status="Completed"
+        )
 
         return history
 

@@ -1,6 +1,9 @@
 import os
 import torch
 
+from app.agents.storage_agent import (
+    StorageAgent
+)
 
 class ModelRegistry:
 
@@ -30,6 +33,13 @@ class ModelRegistry:
             model.state_dict(),
             model_path
         )
+
+        # storage = StorageAgent()
+
+        # storage.upload_file(
+        #     bucket="models",
+        #     local_file_path=model_path
+        # )
 
         return model_path
 

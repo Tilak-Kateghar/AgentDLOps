@@ -1,9 +1,14 @@
+from app.services.candidate_selector import (
+    CandidateSelector
+)
+
 class ArchitectureReviewer:
 
     def review(
         self,
         recommendation,
-        comparison_report
+        comparison_report,
+        current_model=None
     ):
 
         ranked_models = recommendation[
@@ -17,6 +22,7 @@ class ArchitectureReviewer:
         if status != "degraded":
 
             return {
+
                 "selected_model":
                     ranked_models[0],
 
@@ -24,20 +30,21 @@ class ArchitectureReviewer:
                     "keep_current_model"
             }
 
-        if len(ranked_models) < 2:
+        selector = (
+            CandidateSelector()
+        )
 
-            return {
-                "selected_model":
-                    ranked_models[0],
-
-                "reason":
-                    "no_alternative_available"
-            }
+        candidate = (
+            selector.select_best_candidate(
+                recommendation,
+                current_model
+            )
+        )
 
         return {
 
             "selected_model":
-                ranked_models[1],
+                candidate,
 
             "reason":
                 "performance_degraded_switch_model"

@@ -1,34 +1,32 @@
-from app.agents.orchestrator_agent import (
-    OrchestratorAgent
+from app.agents.autonomous_deployment_agent import (
+    AutonomousDeploymentAgent
 )
 
+agent = (
+    AutonomousDeploymentAgent()
+)
 
-def main():
+result = (
+    agent.recommend(
 
-    orchestrator = (
-        OrchestratorAgent()
+        {
+            "deployment_target":
+                "mobile"
+        },
+
+        {
+            "best_architecture":
+                {
+                    "model":
+                        "ResNet18"
+                }
+        }
     )
+)
 
-    result = (
-        orchestrator.run_pipeline()
-    )
-
-    print(
-        "\nAUTONOMOUS ADAPTATION REPORT"
-    )
-
-    print("=" * 40)
-
-    for key, value in (
-        result[
-            "adaptive_plan"
-        ].items()
-    ):
-
-        print(
-            f"{key}: {value}"
-        )
-
-
-if __name__ == "__main__":
-    main()
+print()
+print(
+    "AUTONOMOUS DEPLOYMENT REPORT"
+)
+print("=" * 40)
+print(result)

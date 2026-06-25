@@ -1,32 +1,73 @@
+# from app.agents.orchestrator_agent import (
+#     OrchestratorAgent
+# )
+
+
+# def main():
+
+#     orchestrator = (
+#         OrchestratorAgent()
+#     )
+
+#     result = (
+#         orchestrator.run_pipeline()
+#     )
+
+#     print(
+#         "\nORCHESTRATOR REPORT"
+#     )
+
+#     print("=" * 40)
+
+#     print(
+#         result["training_plan"]
+#     )
+
+#     print(
+#         result["evaluation_report"]
+#     )
+
+
+# if __name__ == "__main__":
+#     main()
+
 from app.agents.orchestrator_agent import (
     OrchestratorAgent
 )
 
+agent = (
+    OrchestratorAgent()
+)
 
-def main():
+result = (
+    agent.run({
 
-    orchestrator = (
-        OrchestratorAgent()
-    )
+        "problem_type":
+            "image_classification",
 
-    result = (
-        orchestrator.run_pipeline()
-    )
+        "dataset_type":
+            "image",
 
-    print(
-        "\nORCHESTRATOR REPORT"
-    )
+        "deployment_target":
+            "mobile",
 
-    print("=" * 40)
+        "optimization_priority":
+            "latency"
+    })
+)
 
-    print(
-        result["training_plan"]
-    )
+print()
+print(
+    "FINAL ORCHESTRATION REPORT"
+)
+print("=" * 40)
 
-    print(
-        result["evaluation_report"]
-    )
+print(
+    result["optimization"]
+)
 
+print()
 
-if __name__ == "__main__":
-    main()
+print(
+    result["explanation"]
+)

@@ -1,23 +1,88 @@
+# ==========================
 # Python
+# ==========================
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*.so
 
+# ==========================
 # Virtual Environment
+# ==========================
 venv/
+.env
 
-# Datasets
-datasets/
+# ==========================
+# IDE
+# ==========================
+.vscode/
+.idea/
 
-# MLflow
-mlruns/
-mlflow.db
-
-# Models
-saved_models/
-
+# ==========================
 # macOS
+# ==========================
 .DS_Store
 
-# Reports
-reports/*.json
+# ==========================
+# Logs
+# ==========================
+*.log
+
+# ==========================
+# Databases
+# ==========================
+*.db
+*.sqlite3
+
+# ==========================
+# Model Files
+# ==========================
+*.pt
+*.pth
+*.onnx
+*.tflite
+
+# ==========================
+# Generated Reports
+# ==========================
+reports/
+artifacts/
+models/
+lineage/
+
+# ==========================
+# Uploaded Datasets
+# ==========================
+datasets/
+
+# ==========================
+# Uploaded Files
+# ==========================
+uploads/
+
+# ==========================
+# Vector Databases
+# ==========================
+memory_db/
+chroma_db/
+
+# ==========================
+# Self Learning Memory
+# ==========================
+memory/
+
+# ==========================
+# Deployment Outputs
+# ==========================
+deployment/
+
+# ==========================
+# Test Files
+# ==========================
+app/test_*.py
+
+# ==========================
+# Python Cache
+# ==========================
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/

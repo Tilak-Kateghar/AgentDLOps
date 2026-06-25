@@ -1,0 +1,10 @@
+venv/
+.git/
+__pycache__/
+saved_models/
+reports/
+exports/
+mlruns/
+*.pth
+*.pyc
+.DS_Store
